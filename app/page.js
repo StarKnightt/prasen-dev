@@ -1,11 +1,11 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { ProjectCard } from '@/components/project-card'
 import { TechStack } from '@/components/tech-stack'
 import { RecentPosts } from '@/components/recent-posts'
 import { ContactForm } from '@/components/contact-form'
 import { SocialLinks } from '@/components/social-links'
-import { UnderLineText } from '@/components/underline-text'
+import { EnhancedImage } from '@/components/enhanced-image'
+import { AnimatedImage } from '@/components/animated-image'
 
 export default function Home() {
   return (
@@ -15,14 +15,14 @@ export default function Home() {
           <h1 className="text-4xl font-bold">Prasenjit Nayak</h1>
           
           <section className="space-y-4">
-            <h2 className="text-xl font-semibold">About Me</h2>
+            <h2 className="text-xl font-semibold underline decoration-wavy decoration-sky-500">About Me</h2>
             <p className="text-gray-400">
               Hello! I'm a developer from Odisha, India. I enjoy to make projects and exploring
-              technology. I completed my  <Link href="https://www.linkedin.com/school/trident-academy-of-technology-tat-bhubaneswar/posts/?feedView=all" className="text-cyan-400 hover:underline"> B.tech degeree</Link> in Computer Science and information technology.</p>
+              technology. I completed my  <Link href="https://www.linkedin.com/school/trident-academy-of-technology-tat-bhubaneswar/posts/?feedView=all" className="text-red-400 hover: decoration-red-400"> B.tech degeree</Link> in Computer Science and information technology.</p>
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-semibold">What I do?</h2>
+            <h2 className="text-xl font-semibold underline decoration-wavy decoration-sky-500">What I do?</h2>
 
             <p className="text-gray-400">
               Currently, I'm learing <Link href="https://github.com/StarKnightt/Next.JS-Learning" className="text-cyan-400 hover:underline">Next.js</Link>. 
@@ -46,13 +46,12 @@ export default function Home() {
           </section>
         </div>
 
-        <div className="md:w-96">
-          <Image
-            src="/placeholder.svg"
-            alt="Ayush Kumar Singh"
+        <div className="md:w-96 w-full">
+          <AnimatedImage
+            src="/first.avif"
+            alt="Prasenjit Nayak"
             width={400}
             height={400}
-            className="rounded-lg border-2 border-cyan-400/20"
           />
         </div>
       </div>

@@ -1,38 +1,34 @@
-import { StyledUnderline } from './styled-underline'
-
 export function TechStack() {
-  const technologies = [
-    { name: 'JavaScript', icon: '📜' },
-    { name: 'TypeScript', icon: '🔷' },
-    { name: 'Next.js', icon: '⚡' },
-    { name: 'React.js', icon: '⚛️' },
-    { name: 'TailwindCSS', icon: '🎨' },
-    { name: 'Bootstrap', icon: '🅱️' },
-    { name: 'C++', icon: '🔧' },
-    { name: 'CS', icon: '🎮' },
-    { name: 'PostgreSQL', icon: '🐘' },
-    { name: 'Prisma', icon: '💎' },
-    { name: 'Node.js', icon: '🟢' },
-    { name: 'Firebase', icon: '🔥' },
-    { name: 'AI', icon: '🤖' },
-    { name: 'Nginx', icon: '🌐' },
-    { name: 'Express', icon: '🚂' },
-  ]
-
-  return (
-    <div className="flex flex-wrap gap-3">
-      {technologies.map((tech) => (
-        <div
-          key={tech.name}
-          className="px-3 py-1.5 bg-gray-900/50 rounded-lg border border-gray-800 flex items-center gap-2 hover:bg-gray-800/50 transition-colors duration-200"
-        >
-          <span>{tech.icon}</span>
-          <StyledUnderline style="gradient" color="cyan">
-            <span className="text-sm">{tech.name}</span>
-          </StyledUnderline>
-        </div>
-      ))}
-    </div>
-  )
-}
-
+    const technologies = [
+      { name: 'JavaScript', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png' },
+      { name: 'TypeScript', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/typescript/typescript.png' },
+      { name: 'Next.js', icon: '/next-js.svg' },
+      { name: 'React.js', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png' },
+      { name: 'TailwindCSS', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/tailwind/tailwind.png' },
+      { name: 'Bootstrap', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/bootstrap/bootstrap.png' },
+      { name: 'Java', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/java/java.png' },
+      { name: 'MongoDB', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/MongoDB.png' },
+      { name: 'Prisma', icon: '/prisma.svg' },
+      { name: 'Node.js', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png' },
+      { name: 'Firebase', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/firebase/firebase.png' },
+      { name: 'AI', icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/api/api.png' },
+      { name: 'Nginx', icon: '/nginx.svg' },
+      { name: 'Express', icon: '/express.svg' },
+    ]
+  
+    return (
+      <div className="flex flex-wrap gap-3">
+        {technologies.map((tech) => (
+          <div
+            key={tech.name}
+            className="px-3 py-1.5 bg-gray-900/50 rounded-lg border border-gray-800 flex items-center gap-2"
+          >
+            <img src={tech.icon} alt={tech.name} className="w-4 h-4" />
+            <span className="text-sm text-gray-300">{tech.name}</span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+  
+  
