@@ -4,7 +4,6 @@ import { TechStack } from '@/components/tech-stack'
 import { RecentPosts } from '@/components/recent-posts'
 import { ContactForm } from '@/components/contact-form'
 import { SocialLinks } from '@/components/social-links'
-import { EnhancedImage } from '@/components/enhanced-image'
 import { AnimatedImage } from '@/components/animated-image'
 
 export default function Home() {

@@ -126,7 +126,7 @@ export function AnimatedImage({
               animate={{ scale: isHovered ? 1 : 0, rotate: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
             >
-              <ZoomIn className="text-white w-10 h-10" />
+              {/* <ZoomIn className="text-white w-10 h-10" /> */}
             </motion.div>
           </motion.div>
         </div>
