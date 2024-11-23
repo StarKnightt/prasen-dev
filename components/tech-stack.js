@@ -12,7 +12,6 @@ import { Pause, Play } from 'lucide-react'
 
 export function TechStack() {
   const [isPaused, setIsPaused] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
 
   const row1 = [
     { name: 'Next.js', Icon: SiNextdotjs },
@@ -38,68 +37,53 @@ export function TechStack() {
 
   const ScrollingRow = ({ items, reverse = false }) => {
     const containerRef = useRef(null)
-    const [containerWidth, setContainerWidth] = useState(0)
     const controls = useAnimation()
 
     useEffect(() => {
-      const updateWidth = () => {
-        if (containerRef.current) {
-          setContainerWidth(containerRef.current.offsetWidth)
-        }
-      }
+      const animateRow = () => {
+        const rowWidth = containerRef.current ? containerRef.current.scrollWidth / 2 : 0
 
-      updateWidth()
-      window.addEventListener('resize', updateWidth)
-      return () => window.removeEventListener('resize', updateWidth)
-    }, [])
-
-    useEffect(() => {
-      if (containerWidth > 0 && !isPaused) {
         controls.start({
-          x: reverse ? [0, -containerWidth] : [-containerWidth, 0],
+          x: reverse ? [0, -rowWidth] : [-rowWidth, 0],
           transition: {
             x: {
               repeat: Infinity,
-              repeatType: "loop",
-              duration: isHovered ? 30 : 20,
-              ease: "linear",
+              repeatType: 'loop',
+              duration: 20,
+              ease: 'linear',
             },
           },
         })
+      }
+
+      if (!isPaused) {
+        animateRow()
       } else {
         controls.stop()
       }
-    }, [containerWidth, controls, reverse, isPaused, isHovered])
+    }, [controls, reverse, isPaused])
 
     return (
       <div 
         ref={containerRef} 
-        className="relative overflow-hidden py-2"
-        role="region"
-        aria-label={`Scrolling tech stack ${reverse ? 'reverse' : 'forward'}`}
+        className="relative overflow-hidden py-2 h-14"
       >
         <motion.div
-          className="flex absolute"
+          className="flex absolute left-0"
           animate={controls}
         >
           {[...items, ...items].map((item, index) => (
             <motion.div
               key={`${item.name}-${index}`}
-              className="flex items-center gap-2 px-4 py-2 mx-2 rounded-full bg-gray-800 border border-gray-600 hover:border-cyan-500 hover:bg-cyan-500/10 transition-all"
-              whileHover={{ 
-                scale: 1.05,
-                transition: { duration: 0.2 }
-              }}
-              role="listitem"
+              className="flex items-center gap-2 px-4 py-2 mx-2 rounded-full bg-gray-800 backdrop-blur-sm border border-gray-700 hover:border-cyan-500 hover:bg-cyan-500/10 transition-all duration-300"
             >
-              <div className="w-6 h-6 flex items-center justify-center">
+              <div className="w-6 h-6 flex items-center justify-center relative z-10">
                 <item.Icon 
                   size={20} 
-                  className="text-white" // Changed from text-cyan-400 to text-white for better visibility
-                  aria-hidden="true"
+                  className="text-cyan-400"
                 />
               </div>
-              <span className="text-sm text-white font-medium whitespace-nowrap"> 
+              <span className="text-sm text-gray-100 font-medium whitespace-nowrap relative z-10">
                 {item.name}
               </span>
             </motion.div>
@@ -110,11 +94,7 @@ export function TechStack() {
   }
 
   return (
-    <div 
-      className="w-full overflow-hidden bg-black py-8 relative" 
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="w-full overflow-hidden bg-black/80 py-8 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1920px]">
         <div className="flex flex-col gap-4">
           <ScrollingRow items={row1} />
@@ -124,14 +104,30 @@ export function TechStack() {
       
       <button
         onClick={() => setIsPaused(!isPaused)}
-        className="absolute bottom-4 right-4 p-2 rounded-full bg-gray-800 border border-gray-600 hover:border-cyan-500 hover:bg-cyan-500/10 transition-all"
+        className="absolute bottom-4 right-4 p-2 rounded-full bg-gray-900/90 border border-gray-700 hover:border-cyan-500 hover:bg-cyan-500/20 transition-all z-20"
         aria-label={isPaused ? "Resume animation" : "Pause animation"}
       >
         <AnimatePresence mode="wait">
           {isPaused ? (
-            <Play className="w-4 h-4 text-white" /> 
+            <motion.div
+              key="play"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className="flex justify-center items-center"
+            >
+              <Play className="w-4 h-4 text-cyan-400" />
+            </motion.div>
           ) : (
-            <Pause className="w-4 h-4 text-white" /> 
+            <motion.div
+              key="pause"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className="flex justify-center items-center"
+            >
+              <Pause className="w-4 h-4 text-cyan-400" />
+            </motion.div>
           )}
         </AnimatePresence>
       </button>

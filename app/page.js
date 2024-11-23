@@ -40,9 +40,12 @@ export default function Home() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-semibold">Tools that I have used</h2>
-            <TechStack />
-          </section>
+  <h2 className="text-xl font-semibold underline decoration-wavy decoration-sky-500">Tools that I have used</h2>
+  <div className="bg-gray-900/50 rounded-lg p-4">
+    <TechStack />
+  </div>
+</section>
+
         </div>
 
         <div className="md:w-96 w-full">
@@ -98,4 +101,3 @@ export default function Home() {
     </div>
   )
 }
-
