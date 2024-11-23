@@ -66,7 +66,7 @@ export function TechStack() {
     return (
       <div 
         ref={containerRef} 
-        className="relative overflow-hidden py-2 h-14"
+        className="relative overflow-hidden py-2 h-16"
       >
         <motion.div
           className="flex absolute left-0"
