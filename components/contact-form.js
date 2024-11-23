@@ -23,8 +23,8 @@ export function ContactForm() {
       </h2>
       <p className="text-gray-400">
         If you have any inquiries, please feel free to reach out. You can contact us via email at{' '}
-        <a href="mailto:ayush1357@hotmail.com" className="text-cyan-400 hover:underline">
-          ayush1357@hotmail.com
+        <a href="mailto:prasenjitt4e@gmail.com" className="text-cyan-400 hover:underline">
+          prasenjitt4e@gmail.com
         </a>
       </p>
       <form onSubmit={handleSubmit} className="space-y-4">
