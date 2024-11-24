@@ -23,7 +23,7 @@ function RootLayout({ children }) {
           <header className="py-6 flex justify-between items-center">
             <Avatar>
               <AvatarImage src="https://avatars.githubusercontent.com/u/92244026?v=4" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback>PN</AvatarFallback>
             </Avatar>
 
             <nav className="space-x-8">

@@ -3,40 +3,55 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, useAnimation } from 'framer-motion'
-import { ZoomIn, Sparkles, Camera } from 'lucide-react'
+import { Sparkles, Camera } from 'lucide-react'
 
 export function AnimatedImage({ 
   src, 
   alt, 
   width, 
   height,
-  borderColor = "#0FF",
-  glowColor = "cyan"
+  borderColor = "#0FF"
 }) {
-  const [isHovered, setIsHovered] = useState(false)
   const controls = useAnimation()
 
+  // Continuous floating animation
   useEffect(() => {
     controls.start({
-      scale: isHovered ? 1.02 : 1,
-      transition: { duration: 0.3 }
+      y: [0, -5, 0],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
     })
-  }, [isHovered, controls])
+  }, [controls])
 
   return (
     <motion.div
-      className="relative group"
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      className="relative"
       animate={controls}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
     >
       {/* Animated border container */}
       <div className="relative p-1 rounded-lg">
-        {/* Background glow effect */}
-        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-500/20 blur-xl" />
+        {/* Glow effect */}
+        <motion.div 
+          className="absolute inset-0 rounded-lg opacity-50"
+          animate={{
+            boxShadow: [
+              "0 0 20px rgba(6, 182, 212, 0.3)",
+              "0 0 30px rgba(6, 182, 212, 0.5)",
+              "0 0 20px rgba(6, 182, 212, 0.3)"
+            ]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
         
         {/* Corner decorations */}
         {[0, 1, 2, 3].map((corner) => (
@@ -86,7 +101,7 @@ export function AnimatedImage({
         {['top', 'right', 'bottom', 'left'].map((side, index) => (
           <motion.div
             key={side}
-            className="absolute bg-gradient-to-r from-cyan-500 to-purple-500"
+            className="absolute bg-cyan-500"
             style={{
               [side]: 0,
               [side === 'top' || side === 'bottom' ? 'left' : 'top']: '15%',
@@ -113,54 +128,41 @@ export function AnimatedImage({
             alt={alt}
             width={width}
             height={height}
-            className="rounded-lg transition-all duration-300"
+            className="rounded-lg"
+            quality={100}
+            style={{
+              colorSpace: 'srgb'
+            }}
           />
-
-          {/* Hover overlay */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-purple-500/30 rounded-lg flex items-center justify-center opacity-0"
-            animate={{ opacity: isHovered ? 1 : 0 }}
-          >
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: isHovered ? 1 : 0, rotate: 0 }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            >
-              {/* <ZoomIn className="text-white w-10 h-10" /> */}
-            </motion.div>
-          </motion.div>
         </div>
 
-        {/* Decorative corner icons */}
+        {/* Decorative corner icons with pulse animation */}
         <motion.div
-          className="absolute -top-2 -left-2 bg-cyan-400 rounded-full p-2 shadow-lg shadow-cyan-500/50"
-          initial={{ scale: 0 }}
+          className="absolute -top-2 -left-2 bg-cyan-500 rounded-full p-2 shadow-lg shadow-cyan-500/50"
           animate={{
-            scale: [0, 1.2, 1],
-            rotate: [0, 20, 0],
+            scale: [1, 1.2, 1],
+            rotate: [0, 10, 0]
           }}
           transition={{
-            duration: 0.5,
-            delay: 0.2,
+            duration: 2,
             repeat: Infinity,
-            repeatDelay: 4,
+            ease: "easeInOut"
           }}
         >
           <Sparkles className="text-white w-4 h-4" />
         </motion.div>
 
         <motion.div
-          className="absolute -bottom-2 -right-2 bg-purple-400 rounded-full p-2 shadow-lg shadow-purple-500/50"
-          initial={{ scale: 0 }}
+          className="absolute -bottom-2 -right-2 bg-cyan-500 rounded-full p-2 shadow-lg shadow-cyan-500/50"
           animate={{
-            scale: [0, 1.2, 1],
-            rotate: [0, -20, 0],
+            scale: [1, 1.2, 1],
+            rotate: [0, -10, 0]
           }}
           transition={{
-            duration: 0.5,
-            delay: 0.4,
+            duration: 2,
             repeat: Infinity,
-            repeatDelay: 4,
+            ease: "easeInOut",
+            delay: 1
           }}
         >
           <Camera className="text-white w-4 h-4" />
@@ -171,3 +173,4 @@ export function AnimatedImage({
 }
 
 export default AnimatedImage
+

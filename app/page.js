@@ -10,6 +10,16 @@ export default function Home() {
   return (
     <div className="py-12">
       <div className="flex flex-col md:flex-row gap-12 items-start">
+        {/* Image moved to top on mobile, will move to right on md breakpoint */}
+        <div className="w-full md:hidden">
+          <AnimatedImage
+            src="/first.avif"
+            alt="Prasenjit Nayak"
+            width={400}
+            height={400}
+          />
+        </div>
+
         <div className="flex-1 space-y-8">
           <h1 className="text-4xl font-bold">Prasenjit Nayak</h1>
           
@@ -40,21 +50,22 @@ export default function Home() {
           </section>
 
           <section className="space-y-4">
-  <h2 className="text-xl font-semibold underline decoration-wavy decoration-sky-500">Tools that I have used</h2>
-  <div className="bg-gray-900/50 rounded-lg p-4">
-    <TechStack />
-  </div>
-</section>
-
+            <h2 className="text-xl font-semibold underline decoration-wavy decoration-sky-500">Tools that I have used</h2>
+            <div className="bg-gray-900/50 rounded-lg p-4">
+              <TechStack />
+            </div>
+          </section>
         </div>
 
-        <div className="md:w-96 w-full">
-          <AnimatedImage
-            src="/first.avif"
-            alt="Prasenjit Nayak"
-            width={400}
-            height={400}
-          />
+        {/* Image shown only on md and above screens */}
+        <div className="hidden md:block md:w-96">
+        <AnimatedImage
+    src="https://i.postimg.cc/dtN0mBTM/first.avif"
+    alt="Prasenjit Nayak"
+    width={400}
+    height={400}
+/>
+
         </div>
       </div>
 
